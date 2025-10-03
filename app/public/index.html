@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Netflix Redesign 2025 — Demo básica</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="top-nav" role="navigation" aria-label="Navegación principal">
+    <div class="logo" aria-label="Netflix">N</div>
+    <nav class="menu">
+      <button id="btnBuscar" class="nav-btn" aria-controls="searchBox">Buscar</button>
+      <button class="nav-btn">Series</button>
+      <button class="nav-btn">Películas</button>
+      <button class="nav-btn">Juegos</button>
+      <button id="btnMyNetflix" class="nav-btn">My Netflix</button>
+    </nav>
+  </header>
+
+  <section id="searchBox" class="search hidden" aria-hidden="true">
+    <input id="searchInput" type="search" placeholder="Buscar por título o género..." aria-label="Buscar" />
+    <button id="closeSearch" title="Cerrar búsqueda">✕</button>
+  </section>
+
+  <main id="app" class="container" tabindex="-1">
+  </main>
+
+  <aside id="myNetflix" class="drawer hidden" aria-label="My Netflix" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>My Netflix</h2>
+      <button id="closeMyNetflix" title="Cerrar">✕</button>
+    </div>
+    <div id="myList" class="row"></div>
+  </aside>
+
+  <div id="backdrop" class="backdrop hidden" aria-hidden="true"></div>
+
+  <footer class="footer">
+    <small>Demo educativa · HTML + CSS + JS básico · 2025</small>
+  </footer>
+
+  <script defer src="app.js"></script>
+</body>
+
+</html>
