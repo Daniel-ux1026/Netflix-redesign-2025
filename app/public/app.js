@@ -130,6 +130,13 @@ function toggleDrawer(open) {
   $('#backdrop').setAttribute('aria-hidden', open ? 'false' : 'true');
 }
 
+function toggleProfileDrawer(open) {
+  $('#perfilDrawer').classList.toggle('hidden', !open);
+  $('#backdrop').classList.toggle('hidden', !open);
+  $('#perfilDrawer').setAttribute('aria-hidden', open ? 'false' : 'true');
+  $('#backdrop').setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+
 function toggleSearch(open) {
   $('#searchBox').classList.toggle('hidden', !open);
   $('#searchBox').setAttribute('aria-hidden', open ? 'false' : 'true');
@@ -141,7 +148,17 @@ $('#btnMyNetflix').addEventListener('click', () => {
   renderMyNetflix(); toggleDrawer(true);
 });
 $('#closeMyNetflix').addEventListener('click', () => toggleDrawer(false));
-$('#backdrop').addEventListener('click', () => toggleDrawer(false));
+$('#backdrop').addEventListener('click', () => {
+  // Close any open drawer
+  const myNetflixOpen = !$('#myNetflix').classList.contains('hidden');
+  const profileOpen = !$('#perfilDrawer').classList.contains('hidden');
+  
+  if (myNetflixOpen) toggleDrawer(false);
+  if (profileOpen) toggleProfileDrawer(false);
+});
+
+$('#btnPerfil').addEventListener('click', () => toggleProfileDrawer(true));
+$('#closePerfil').addEventListener('click', () => toggleProfileDrawer(false));
 
 $('#btnBuscar').addEventListener('click', () => toggleSearch(true));
 $('#closeSearch').addEventListener('click', () => { toggleSearch(false); renderHome(); });
@@ -151,6 +168,32 @@ $('#searchInput').addEventListener('input', (e) => {
   if (!v) return renderHome();
   renderSearch(v);
 });
+
+// Eventos de preferencias del perfil
+$('#languageSelect').addEventListener('change', (e) => {
+  localStorage.setItem('userLanguage', e.target.value);
+  console.log('Idioma cambiado a:', e.target.value);
+});
+
+$('#autoplayToggle').addEventListener('change', (e) => {
+  localStorage.setItem('autoplay', e.target.checked);
+  console.log('Reproducción automática:', e.target.checked);
+});
+
+$('#soundsToggle').addEventListener('change', (e) => {
+  localStorage.setItem('sounds', e.target.checked);
+  console.log('Sonidos de navegación:', e.target.checked);
+});
+
+// Cargar preferencias guardadas
+const savedLanguage = localStorage.getItem('userLanguage');
+if (savedLanguage) $('#languageSelect').value = savedLanguage;
+
+const savedAutoplay = localStorage.getItem('autoplay');
+if (savedAutoplay !== null) $('#autoplayToggle').checked = savedAutoplay === 'true';
+
+const savedSounds = localStorage.getItem('sounds');
+if (savedSounds !== null) $('#soundsToggle').checked = savedSounds === 'true';
 
 // Inicial
 renderHome();
