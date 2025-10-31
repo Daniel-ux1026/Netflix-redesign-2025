@@ -18,6 +18,9 @@
       <button class="nav-btn">Juegos</button>
       <button id="btnMyNetflix" class="nav-btn">My Netflix</button>
     </nav>
+    <button id="btnPerfil" class="profile-btn" aria-label="Perfil" title="Perfil">
+      <div class="profile-avatar">U</div>
+    </button>
   </header>
 
   <section id="searchBox" class="search hidden" aria-hidden="true">
@@ -34,6 +37,67 @@
       <button id="closeMyNetflix" title="Cerrar">✕</button>
     </div>
     <div id="myList" class="row"></div>
+  </aside>
+
+  <aside id="perfilDrawer" class="drawer hidden" aria-label="Perfil" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Perfil</h2>
+      <button id="closePerfil" title="Cerrar">✕</button>
+    </div>
+    <div class="profile-content">
+      <div class="profile-user">
+        <div class="profile-avatar-large">U</div>
+        <h3 id="userName">Usuario</h3>
+        <p class="profile-email">usuario@netflix.com</p>
+      </div>
+      
+      <div class="profile-section">
+        <h4>Configuración de cuenta</h4>
+        <button class="profile-option">
+          <span>👤</span>
+          <span>Administrar perfiles</span>
+        </button>
+        <button class="profile-option">
+          <span>⚙️</span>
+          <span>Configuración</span>
+        </button>
+        <button class="profile-option">
+          <span>🔔</span>
+          <span>Notificaciones</span>
+        </button>
+      </div>
+
+      <div class="profile-section">
+        <h4>Preferencias</h4>
+        <div class="profile-preference">
+          <label for="languageSelect">Idioma:</label>
+          <select id="languageSelect" class="profile-select">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+          </select>
+        </div>
+        <div class="profile-preference">
+          <label for="autoplayToggle">
+            <input type="checkbox" id="autoplayToggle" checked />
+            Reproducción automática
+          </label>
+        </div>
+        <div class="profile-preference">
+          <label for="soundsToggle">
+            <input type="checkbox" id="soundsToggle" />
+            Sonidos de navegación
+          </label>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <button class="profile-option-danger">
+          <span>🚪</span>
+          <span>Cerrar sesión</span>
+        </button>
+      </div>
+    </div>
   </aside>
 
   <div id="backdrop" class="backdrop hidden" aria-hidden="true"></div>

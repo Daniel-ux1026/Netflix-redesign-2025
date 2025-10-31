@@ -46,7 +46,8 @@ body {
 .menu {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    flex: 1
 }
 
 .nav-btn {
@@ -230,6 +231,166 @@ body {
     z-index: 15
 }
 
+.profile-btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    margin-left: auto
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--brand);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px
+}
+
+.profile-btn:hover .profile-avatar,
+.profile-btn:focus .profile-avatar {
+    outline: 2px solid var(--focus)
+}
+
+.profile-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1
+}
+
+.profile-user {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #222
+}
+
+.profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    background: var(--brand);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 32px;
+    margin: 0 auto 16px
+}
+
+.profile-user h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px
+}
+
+.profile-email {
+    color: var(--ink-dim);
+    font-size: 14px;
+    margin: 0
+}
+
+.profile-section {
+    margin-bottom: 24px
+}
+
+.profile-section h4 {
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px
+}
+
+.profile-option {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid #222;
+    color: var(--ink);
+    padding: 14px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    text-align: left
+}
+
+.profile-option:hover,
+.profile-option:focus {
+    background: var(--card-hover);
+    border-color: var(--focus)
+}
+
+.profile-option-danger {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand);
+    padding: 14px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    text-align: left;
+    justify-content: center;
+    font-weight: 600
+}
+
+.profile-option-danger:hover,
+.profile-option-danger:focus {
+    background: var(--brand);
+    color: var(--ink)
+}
+
+.profile-preference {
+    padding: 12px 0;
+    border-bottom: 1px solid #222
+}
+
+.profile-preference:last-child {
+    border-bottom: none
+}
+
+.profile-preference label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 15px
+}
+
+.profile-select {
+    background: var(--card);
+    border: 1px solid #222;
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px
+}
+
+.profile-select:focus {
+    outline: 2px solid var(--focus);
+    border-color: var(--focus)
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--brand)
+}
+
 @media (max-width:640px) {
     .row {
         gap: 10px
@@ -237,5 +398,10 @@ body {
 
     .card {
         width: 140px
+    }
+    
+    .drawer {
+        width: 100%;
+        max-width: 100%
     }
 }
