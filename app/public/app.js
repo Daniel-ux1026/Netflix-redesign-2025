@@ -149,8 +149,12 @@ $('#btnMyNetflix').addEventListener('click', () => {
 });
 $('#closeMyNetflix').addEventListener('click', () => toggleDrawer(false));
 $('#backdrop').addEventListener('click', () => {
-  toggleDrawer(false);
-  toggleProfileDrawer(false);
+  // Close any open drawer
+  const myNetflixOpen = !$('#myNetflix').classList.contains('hidden');
+  const profileOpen = !$('#perfilDrawer').classList.contains('hidden');
+  
+  if (myNetflixOpen) toggleDrawer(false);
+  if (profileOpen) toggleProfileDrawer(false);
 });
 
 $('#btnPerfil').addEventListener('click', () => toggleProfileDrawer(true));

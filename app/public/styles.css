@@ -47,7 +47,7 @@ body {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    flex: 1
+    flex: 1;
 }
 
 .nav-btn {
