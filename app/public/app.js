@@ -64,6 +64,12 @@ function crearCard(item) {
   card.addEventListener('focus', startPreview);
   card.addEventListener('blur', stopPreview);
 
+  // Click en la card muestra más detalles
+  card.addEventListener('click', (e) => {
+    if (e.target === like) return;
+    mostrarDetalles(item);
+  });
+
   const title = document.createElement('div');
   title.className = 'card-title';
   title.textContent = item.titulo;
@@ -97,6 +103,20 @@ function renderHome() {
   app.appendChild(crearSeccion('Seguir viendo', it => it.id <= 6));
   app.appendChild(crearSeccion('Top 10', it => it.badge === 'Top 10'));
   app.appendChild(crearSeccion('Novedades', it => it.badge === 'Nuevo'));
+}
+
+function renderSeries() {
+  app.innerHTML = '';
+  app.appendChild(crearSeccion('Series Populares', it => it.genero === 'Serie'));
+  app.appendChild(crearSeccion('Series Top 10', it => it.genero === 'Serie' && it.badge === 'Top 10'));
+  app.appendChild(crearSeccion('Series Nuevas', it => it.genero === 'Serie' && it.badge === 'Nuevo'));
+}
+
+function renderPeliculas() {
+  app.innerHTML = '';
+  app.appendChild(crearSeccion('Películas Populares', it => it.genero === 'Película'));
+  app.appendChild(crearSeccion('Películas Premiadas', it => it.genero === 'Película' && it.badge === 'Premiado'));
+  app.appendChild(crearSeccion('Películas Nuevas', it => it.genero === 'Película' && it.badge === 'Nuevo'));
 }
 
 function renderSearch(q) {
@@ -136,6 +156,54 @@ function toggleSearch(open) {
   if (open) $('#searchInput').focus();
 }
 
+function mostrarDetalles(item) {
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-labelledby', 'modalTitle');
+  
+  modal.innerHTML = `
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Cerrar">✕</button>
+      <div class="modal-poster">${letraPoster(item.titulo)}</div>
+      <h2 id="modalTitle">${item.titulo}</h2>
+      <p class="modal-badge">${item.badge}</p>
+      <p class="modal-genero">${item.genero}</p>
+      <div class="modal-actions">
+        <button class="modal-btn play-btn">▶ Reproducir</button>
+        <button class="modal-btn like-btn">${state.miLista.has(item.id) ? '♥ En Mi Lista' : '+ Mi Lista'}</button>
+      </div>
+    </div>
+  `;
+  
+  const closeModal = () => {
+    modal.remove();
+    $('#backdrop').classList.add('hidden');
+  };
+  
+  modal.querySelector('.modal-close').addEventListener('click', closeModal);
+  $('#backdrop').addEventListener('click', closeModal);
+  
+  modal.querySelector('.like-btn').addEventListener('click', () => {
+    if (state.miLista.has(item.id)) {
+      state.miLista.delete(item.id);
+      modal.querySelector('.like-btn').textContent = '+ Mi Lista';
+    } else {
+      state.miLista.add(item.id);
+      modal.querySelector('.like-btn').textContent = '♥ En Mi Lista';
+    }
+    localStorage.setItem('miLista', JSON.stringify([...state.miLista]));
+    renderMyNetflix();
+  });
+  
+  modal.querySelector('.play-btn').addEventListener('click', () => {
+    alert(`Reproduciendo: ${item.titulo}`);
+  });
+  
+  document.body.appendChild(modal);
+  $('#backdrop').classList.remove('hidden');
+}
+
 // Eventos UI
 $('#btnMyNetflix').addEventListener('click', () => {
   renderMyNetflix(); toggleDrawer(true);
@@ -150,6 +218,26 @@ $('#searchInput').addEventListener('input', (e) => {
   const v = e.target.value;
   if (!v) return renderHome();
   renderSearch(v);
+});
+
+// Navegación Series y Películas
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const text = e.target.textContent.trim();
+    if (text === 'Series') {
+      toggleSearch(false);
+      renderSeries();
+    } else if (text === 'Películas') {
+      toggleSearch(false);
+      renderPeliculas();
+    }
+  });
+});
+
+// Logo vuelve al inicio
+$('.logo').addEventListener('click', () => {
+  toggleSearch(false);
+  renderHome();
 });
 
 // Inicial

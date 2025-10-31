@@ -40,7 +40,8 @@ body {
 .logo {
     font-weight: 900;
     color: var(--brand);
-    font-size: 20px
+    font-size: 20px;
+    cursor: pointer
 }
 
 .menu {
@@ -228,6 +229,100 @@ body {
     background: rgba(0, 0, 0, .5);
     backdrop-filter: blur(2px);
     z-index: 15
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+    background: #141414;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .8)
+}
+
+.modal-content {
+    position: relative;
+    padding: 24px
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #222;
+    border: 1px solid #333;
+    color: var(--ink);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 18px
+}
+
+.modal-poster {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #333, #111);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 72px;
+    color: #888;
+    margin-bottom: 16px
+}
+
+.modal-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 24px
+}
+
+.modal-badge {
+    display: inline-block;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3));
+    border: 1px solid #333;
+    color: var(--ink);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin: 0 8px 8px 0
+}
+
+.modal-genero {
+    color: var(--ink-dim);
+    margin: 0 0 16px 0
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap
+}
+
+.modal-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.play-btn {
+    background: var(--brand);
+    color: var(--ink)
+}
+
+.like-btn {
+    background: #222;
+    color: var(--ink);
+    border: 1px solid #444
 }
 
 @media (max-width:640px) {
