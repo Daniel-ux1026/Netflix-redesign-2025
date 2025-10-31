@@ -160,6 +160,7 @@ function mostrarDetalles(item) {
   const modal = document.createElement('div');
   modal.className = 'modal';
   modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
   modal.setAttribute('aria-labelledby', 'modalTitle');
   
   modal.innerHTML = `
